@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 import type { NextRequest } from "next/server";
-import type { Database } from "@/util/types.d.ts";
+import type { Database } from "@/lib/types.d.ts";
 
 export async function GET(request: NextRequest) {
   const requestUrl = new URL(request.url);
