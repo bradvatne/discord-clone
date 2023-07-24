@@ -9,58 +9,27 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      channel_messages: {
-        Row: {
-          channel_id: number | null
-          content: string
-          message_id: number
-          timestamp: string
-          user_id: number | null
-        }
-        Insert: {
-          channel_id?: number | null
-          content: string
-          message_id?: number
-          timestamp?: string
-          user_id?: number | null
-        }
-        Update: {
-          channel_id?: number | null
-          content?: string
-          message_id?: number
-          timestamp?: string
-          user_id?: number | null
-        }
-        Relationships: [
-          {
-            foreignKeyName: "channel_messages_channel_id_fkey"
-            columns: ["channel_id"]
-            referencedRelation: "channels"
-            referencedColumns: ["channel_id"]
-          },
-          {
-            foreignKeyName: "channel_messages_user_id_fkey"
-            columns: ["user_id"]
-            referencedRelation: "users"
-            referencedColumns: ["user_id"]
-          }
-        ]
-      }
       channels: {
         Row: {
           channel_id: number
           channel_name: string
-          server_id: number | null
+          created_at: string
+          server_id: number
+          updated_at: string
         }
         Insert: {
           channel_id?: number
           channel_name: string
-          server_id?: number | null
+          created_at?: string
+          server_id: number
+          updated_at?: string
         }
         Update: {
           channel_id?: number
           channel_name?: string
-          server_id?: number | null
+          created_at?: string
+          server_id?: number
+          updated_at?: string
         }
         Relationships: [
           {
@@ -71,65 +40,37 @@ export interface Database {
           }
         ]
       }
-      direct_messages: {
+      messages: {
         Row: {
-          content: string
+          channel_id: number
+          created_at: string
+          message: string
           message_id: number
-          receiver_id: number | null
-          sender_id: number | null
-          timestamp: string
+          user_id: string
         }
         Insert: {
-          content: string
+          channel_id: number
+          created_at?: string
+          message: string
           message_id?: number
-          receiver_id?: number | null
-          sender_id?: number | null
-          timestamp?: string
+          user_id: string
         }
         Update: {
-          content?: string
+          channel_id?: number
+          created_at?: string
+          message?: string
           message_id?: number
-          receiver_id?: number | null
-          sender_id?: number | null
-          timestamp?: string
+          user_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "direct_messages_receiver_id_fkey"
-            columns: ["receiver_id"]
-            referencedRelation: "users"
-            referencedColumns: ["user_id"]
+            foreignKeyName: "messages_channel_id_fkey"
+            columns: ["channel_id"]
+            referencedRelation: "channels"
+            referencedColumns: ["channel_id"]
           },
           {
-            foreignKeyName: "direct_messages_sender_id_fkey"
-            columns: ["sender_id"]
-            referencedRelation: "users"
-            referencedColumns: ["user_id"]
-          }
-        ]
-      }
-      server_members: {
-        Row: {
-          server_id: number
-          user_id: number
-        }
-        Insert: {
-          server_id: number
-          user_id: number
-        }
-        Update: {
-          server_id?: number
-          user_id?: number
-        }
-        Relationships: [
-          {
-            foreignKeyName: "server_members_server_id_fkey"
-            columns: ["server_id"]
-            referencedRelation: "servers"
-            referencedColumns: ["server_id"]
-          },
-          {
-            foreignKeyName: "server_members_user_id_fkey"
+            foreignKeyName: "messages_user_id_fkey"
             columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["user_id"]
@@ -138,24 +79,61 @@ export interface Database {
       }
       servers: {
         Row: {
-          creator_id: number | null
+          created_at: string
+          owner_id: string
           server_id: number
           server_name: string
+          updated_at: string
         }
         Insert: {
-          creator_id?: number | null
+          created_at?: string
+          owner_id: string
           server_id?: number
           server_name: string
+          updated_at?: string
         }
         Update: {
-          creator_id?: number | null
+          created_at?: string
+          owner_id?: string
           server_id?: number
           server_name?: string
+          updated_at?: string
         }
         Relationships: [
           {
-            foreignKeyName: "servers_creator_id_fkey"
-            columns: ["creator_id"]
+            foreignKeyName: "servers_owner_id_fkey"
+            columns: ["owner_id"]
+            referencedRelation: "users"
+            referencedColumns: ["user_id"]
+          }
+        ]
+      }
+      user_servers: {
+        Row: {
+          created_at: string
+          server_id: number
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          server_id: number
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          server_id?: number
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_servers_server_id_fkey"
+            columns: ["server_id"]
+            referencedRelation: "servers"
+            referencedColumns: ["server_id"]
+          },
+          {
+            foreignKeyName: "user_servers_user_id_fkey"
+            columns: ["user_id"]
             referencedRelation: "users"
             referencedColumns: ["user_id"]
           }
@@ -163,24 +141,34 @@ export interface Database {
       }
       users: {
         Row: {
-          email: string
-          password: string
-          user_id: number
+          avatar_url: string | null
+          created_at: string
+          updated_at: string
+          user_id: string
           username: string
         }
         Insert: {
-          email: string
-          password: string
-          user_id?: number
+          avatar_url?: string | null
+          created_at?: string
+          updated_at?: string
+          user_id: string
           username: string
         }
         Update: {
-          email?: string
-          password?: string
-          user_id?: number
+          avatar_url?: string | null
+          created_at?: string
+          updated_at?: string
+          user_id?: string
           username?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "users_user_id_fkey"
+            columns: ["user_id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
+        ]
       }
     }
     Views: {
