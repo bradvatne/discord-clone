@@ -1,5 +1,6 @@
 import React from "react";
 
 export const ServerList = () => {
-  return <div>ServerList</div>;
+  
+  return <div className="w-[80px] h-full">ServerList</div>;
 };

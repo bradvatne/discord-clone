@@ -3,15 +3,11 @@
 import { useBoundStore } from "@/lib/store";
 import { Database } from "@/lib/types";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
-import React, { ReactNode, useEffect } from "react";
-import { Login } from "./Login";
+import React, { useEffect } from "react";
 
-export const Providers = ({ children }: { children: ReactNode }) => {
+export const Providers = () => {
   const supabase = createClientComponentClient<Database>();
-  const [session, setSession] = useBoundStore((state) => [
-    state.session,
-    state.setSession,
-  ]);
+  const [setSession] = useBoundStore((state) => [state.setSession]);
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
@@ -25,8 +21,7 @@ export const Providers = ({ children }: { children: ReactNode }) => {
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [supabase.auth, setSession]);
 
-  if (!session) return <Login />;
-  return <>{children}</>;
+  return <></>;
 };
