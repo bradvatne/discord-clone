@@ -4,7 +4,12 @@ import { ChannelsTable } from "@/lib/types";
 import { useBoundStore } from "@/lib/store";
 
 const ChannelItem = ({ channel }: { channel: ChannelsTable }) => {
-  return <div>{channel.channel_name}</div>;
+  const setCurrentChannel = useBoundStore((state) => state.setCurrentChannel);
+  return (
+    <button onClick={() => setCurrentChannel(channel)}>
+      {channel.channel_name}
+    </button>
+  );
 };
 
 export const ChannelsList = ({

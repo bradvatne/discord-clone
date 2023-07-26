@@ -187,7 +187,8 @@ export interface Database {
 }
 
 export type ChannelsTable = Database["public"]["Tables"]["channels"]["Row"];
-export type MessagesTable = Database["public"]["Tables"]["messages"];
+export type MessagesTable = Database["public"]["Tables"]["messages"]["Row"];
 export type ServersTable = Database["public"]["Tables"]["servers"]["Row"];
-export type UserServersTable = Database["public"]["Tables"]["user_servers"];
-export type UsersTable = Database["public"]["Tables"]["users"];
+export type UserServersTable =
+  Database["public"]["Tables"]["user_servers"]["Row"];
+export type UsersTable = Database["public"]["Tables"]["users"]["Row"];

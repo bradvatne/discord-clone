@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { ServerList } from "@/components/ServerList";
 import { ChannelsList } from "@/components/ChannelsList";
 import { Database } from "@/lib/types";
+import { Chatroom } from "@/components/Chatroom";
 
 export const Home = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -19,6 +20,7 @@ export const Home = async () => {
     <div className="flex w-full h-full">
       <ServerList />
       <ChannelsList channels={channels!} />
+      <Chatroom />
     </div>
   );
 };
