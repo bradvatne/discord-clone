@@ -185,3 +185,9 @@ export interface Database {
     }
   }
 }
+
+export type ChannelsTable = Database['public']['Tables']['channels'];
+export type MessagesTable = Database['public']['Tables']['messages'];
+export type ServersTable = Database['public']['Tables']['servers'];
+export type UserServersTable = Database['public']['Tables']['user_servers'];
+export type UsersTable = Database['public']['Tables']['users'];
