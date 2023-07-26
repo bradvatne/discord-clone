@@ -6,8 +6,6 @@ import { Database } from "@/lib/types";
 
 export const ServerList = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
-  const cookiesStore = cookies();
-  const token = cookiesStore.getAll().map((cook) => console.log(cook));
 
   const {
     data: { user },
