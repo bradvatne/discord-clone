@@ -19,7 +19,7 @@ export const ServerList = async () => {
     .eq("user_id", user?.id);
 
   return (
-    <div className="w-[80px] h-full">
+    <div className="w-[80px] h-full flex flex-col gap-2 p-2">
       {servers?.map((server, idx) => (
         <ServerIcon key={idx} server={server} />
       ))}
