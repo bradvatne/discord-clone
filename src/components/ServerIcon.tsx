@@ -14,7 +14,10 @@ type ServerIconProps = {
 };
 
 export const ServerIcon = ({ server }: { server: ServerIconProps }) => {
-  const setCurrentServer = useBoundStore((state) => state.setCurrentServer);
+  const [setCurrentServer, setCurrentChannel] = useBoundStore((state) => [
+    state.setCurrentServer,
+    state.setCurrentChannel,
+  ]);
   const serverData: {
     created_at: string;
     owner_id: string;
@@ -25,7 +28,9 @@ export const ServerIcon = ({ server }: { server: ServerIconProps }) => {
   return (
     <button
       className="rounded-full w-[50px] h-[50px] bg-indigo-200 flex items-center justify-center text-indigo-600 text-2xl font-medium"
-      onClick={() => setCurrentServer(serverData)}
+      onClick={() => {
+        setCurrentChannel(null), setCurrentServer(serverData);
+      }}
     >
       {server.servers?.server_name.charAt(0)}
     </button>
