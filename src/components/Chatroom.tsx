@@ -3,6 +3,7 @@ import { useBoundStore } from "@/lib/store";
 import { Database, MessagesTable } from "@/lib/types";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import React, { useEffect, useState } from "react";
+import { ChatInput } from "./ChatInput";
 
 export const Chatroom = () => {
   const [messages, setMessages] = useState<MessagesTable[]>([]);
@@ -48,5 +49,11 @@ export const Chatroom = () => {
     };
   }, [currentChannel, supabase]);
 
-  return <div>{messages && messages.map((item) => item.message)}</div>;
+  return (
+    <div className="flex flex-col mx-8">
+      {messages &&
+        messages.map((item) => <div key={item.message_id}>{item.message}</div>)}
+      <ChatInput />
+    </div>
+  );
 };
