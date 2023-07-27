@@ -5,6 +5,7 @@ import { ServerList } from "@/components/ServerList";
 import { ChannelsList } from "@/components/ChannelsList";
 import { Database } from "@/lib/types";
 import { Chatroom } from "@/components/Chatroom";
+import { MemberList } from "@/components/MemberList";
 
 export const Home = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -21,6 +22,7 @@ export const Home = async () => {
       <ServerList />
       <ChannelsList channels={channels!} />
       <Chatroom />
+      <MemberList />
     </div>
   );
 };

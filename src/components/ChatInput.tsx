@@ -33,7 +33,7 @@ export const ChatInput = () => {
   };
   return (
     <div className="flex w-full max-w-sm items-center space-x-2">
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form onSubmit={(e) => handleSubmit(e)} className="flex gap-2">
         <Input
           type="text"
           placeholder="enter your message"

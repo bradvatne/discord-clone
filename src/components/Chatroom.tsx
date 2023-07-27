@@ -50,9 +50,13 @@ export const Chatroom = () => {
   }, [currentChannel, supabase]);
 
   return (
-    <div className="flex flex-col mx-8">
-      {messages &&
-        messages.map((item) => <div key={item.message_id}>{item.message}</div>)}
+    <div className="flex flex-col mx-8 justify-between">
+      <div>
+        {messages &&
+          messages.map((item) => (
+            <div key={item.message_id}>{item.message}</div>
+          ))}
+      </div>
       <ChatInput />
     </div>
   );

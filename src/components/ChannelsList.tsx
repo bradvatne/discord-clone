@@ -6,7 +6,7 @@ import { useBoundStore } from "@/lib/store";
 const ChannelItem = ({ channel }: { channel: ChannelsTable }) => {
   const setCurrentChannel = useBoundStore((state) => state.setCurrentChannel);
   return (
-    <button onClick={() => setCurrentChannel(channel)}>
+    <button onClick={() => setCurrentChannel(channel)} className="text-left">
       {channel.channel_name}
     </button>
   );
@@ -19,7 +19,7 @@ export const ChannelsList = ({
 }) => {
   const currentServer = useBoundStore((state) => state.currentServer);
   return (
-    <div>
+    <div className="flex flex-col gap-2 w-[100px]">
       {channels
         .filter((channel) => channel.server_id === currentServer?.server_id)
         .map((channel) => (
