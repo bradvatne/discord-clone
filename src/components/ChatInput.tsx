@@ -32,15 +32,20 @@ export const ChatInput = () => {
     await sendMessage();
   };
   return (
-    <div className="flex w-full max-w-sm items-center space-x-2">
-      <form onSubmit={(e) => handleSubmit(e)} className="flex gap-2">
+    <div className="flex w-full items-center space-x-2">
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="flex gap-2 w-full mb-2"
+      >
         <Input
           type="text"
           placeholder="enter your message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />
-        <Button type="submit">send</Button>
+        <Button type="submit" disabled={!channel_id}>
+          send
+        </Button>
       </form>
     </div>
   );
