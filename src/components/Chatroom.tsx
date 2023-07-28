@@ -49,6 +49,10 @@ export const Chatroom = () => {
     };
   }, [currentChannel, supabase]);
 
+  if (currentChannel === -1) {
+    return <div>This is the explore channels</div>;
+  }
+
   return (
     <div className="flex flex-col mx-8 justify-between basis-full">
       <div>

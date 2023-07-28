@@ -4,6 +4,7 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Database } from "@/lib/types";
 import { CreateServerButton } from "./CreateServerButton";
+import { ExporeServersButton } from "./ExploreServersButton";
 export const revalidate = 0;
 export const ServerList = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -24,7 +25,10 @@ export const ServerList = async () => {
           <ServerIcon key={idx} server={server} />
         ))}
       </div>
-      <CreateServerButton />
+      <div className="flex-col flex gap-2">
+        <CreateServerButton />
+        <ExporeServersButton />
+      </div>
     </div>
   );
 };
