@@ -1,13 +1,11 @@
 "use client";
 import React, { FormEvent, useState } from "react";
 import { DialogContent, DialogHeader, DialogTrigger } from "./ui/dialog";
-import { Dialog, DialogDescription, DialogTitle } from "@radix-ui/react-dialog";
+import { Dialog, DialogTitle } from "@radix-ui/react-dialog";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/lib/types";
-import { FormSubmitHandler } from "react-hook-form";
-import { z } from "zod";
 import { useBoundStore } from "@/lib/store";
 
 export const CreateServerButton = () => {

@@ -10,13 +10,11 @@ import { MemberList } from "@/components/MemberList";
 export const Home = async () => {
   const supabase = createServerComponentClient<Database>({ cookies });
   const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    data: { session },
+  } = await supabase.auth.getSession();
 
   const servers = await supabase.from("servers").select();
   const { data: channels } = await supabase.from("channels").select();
-
-  if (!user) redirect("/login");
   return (
     <div className="flex w-full h-full">
       <ServerList />

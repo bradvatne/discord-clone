@@ -21,8 +21,8 @@ export function Providers({ children, ...props }: ThemeProviderProps) {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
     });
-
+    
     return () => subscription.unsubscribe();
-  }, [supabase.auth, setSession]);
+  }, [setSession]);
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
